@@ -1,4 +1,4 @@
-```
+```markdown
 # HỆ THỐNG TÌM ĐƯỜNG ĐI NGẮN NHẤT - ĐHBK HÀ NỘI (DSA PROJECT)
 
 Dự án Bài tập lớn môn **Cấu trúc dữ liệu và Giải thuật (DSA)**. Chương trình sử dụng mô hình lập trình hướng đối tượng (OOP), triển khai cấu trúc dữ liệu **Đồ thị dạng Danh sách kề (Adjacency List)** bằng **100% mảng nguyên thủy (List)** và tự xây dựng **Hàng đợi ưu tiên (Min-Heap / Priority Queue)** từ đầu để tối ưu hóa thuật toán **Dijkstra**.
