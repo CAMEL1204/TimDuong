@@ -1,0 +1,20 @@
+=======================================================
+         LỘ TRÌNH DI CHUYỂN NGẮN NHẤT
+=======================================================
+Tổng quãng đường: 892.34 px
+-------------------------------------------------------
+Bước 1: ID 19 -> D2
+Bước 2: ID 48 -> DiemRe
+Bước 3: ID 2 -> DiemRe
+Bước 4: ID 3 -> DiemRe
+Bước 5: ID 4 -> DiemRe
+Bước 6: ID 5 -> DiemRe
+Bước 7: ID 6 -> DiemRe
+Bước 8: ID 7 -> DiemRe
+Bước 9: ID 8 -> Cong Tran Dai Nghia
+Bước 10: ID 35 -> Cong KTX
+Bước 11: ID 43 -> DiemRe
+Bước 12: ID 42 -> DiemRe
+Bước 13: ID 37 -> DiemRe
+Bước 14: ID 36 -> B6
+=======================================================
