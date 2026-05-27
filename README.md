@@ -64,6 +64,70 @@ Gồm 3 thành phần chính bám sát Class Diagram:
 * `PerformTest`: Sử dụng bộ đếm thời gian độ chính xác cao `time.perf_counter()` để đo tốc độ tính toán tính bằng mili-giây (ms).
 
 ---
+## 🧠 ALGORITHM ANALYSIS & PSEUDOCODE
+
+### 1. Algorithm Explanation
+Dijkstra's algorithm is a **greedy algorithm** used to find the shortest path from a single source node to a specific target node in a weighted graph.
+
+
+
+- **Initialization:** We maintain an array `distances` where `distances[u]` stores the shortest distance from the start node to `u`. Initially, `distances[start] = 0` and all other nodes are set to Infinity ($\infty$).
+- **Priority Queue (Min-Heap):** We use a self-implemented `MinHeap` to always extract the node `u` that currently has the **minimum** temporary distance. This ensures we always expand the most promising path first.
+- **Relaxation:** For the current node `u`, we look at all its neighboring nodes `v` via the Adjacency List (`graph.getNeighbors(u)`). If traveling from `start -> u -> v` is shorter than the previously recorded `distances[v]`, we update `distances[v]` and push `v` into the `MinHeap`.
+- **Early Exit:** The algorithm safely terminates the moment the destination node is popped out of the `MinHeap`, saving unnecessary computation.
+
+### 🕒 Complexity Analysis
+- **Time Complexity:** $\mathcal{O}((V + E) \log V)$
+  - **Min-Heap Operations:** Each node is pushed/popped from the heap in $\mathcal{O}(\log V)$. For all vertices, this takes $\mathcal{O}(V \log V)$.
+  - **Edge Relaxation:** In the worst-case scenario, every edge relaxation triggers a heap update, taking $\mathcal{O}(E \log V)$.
+  - **Adjacency List Lookup:** Because `graph.adjList` is a 2D primitive array, looking up neighbors via `adjList[u]` takes **$\mathcal{O}(1)$ constant time**.
+- **Space Complexity:** $\mathcal{O}(V + E)$ to store the `distances` array, `previous` tracker, and the Graph structure (Adjacency List).
+
+### 📝 Pseudocode
+```fortran
+FUNCTION Dijkstra(Graph, start_node, end_node)
+    // Step 1: Initialization
+    Initialize an array 'distances' of size V filled with INFINITY
+    Initialize an array 'previous' of size V filled with -1
+    
+    distances[start_node] = 0
+    
+    Initialize 'pq' as an empty MinHeap
+    pq.push(0, start_node)  // Push [distance, node_index]
+    
+    // Step 2: Core Loop
+    WHILE pq is not empty DO
+        Pop current_item from pq
+        current_dist = current_item.distance
+        u = current_item.node_index
+        
+        // Optimization: Early Exit
+        IF u == end_node THEN
+            BREAK the loop
+        END IF
+        
+        // Skip outdated paths in the heap
+        IF current_dist > distances[u] THEN
+            CONTINUE
+        END IF
+        
+        // Step 3: Relaxation
+        FOR EACH edge IN Graph.getNeighbors(u) DO
+            v = edge.to_node
+            new_dist = current_dist + edge.weight
+            
+            // If a shorter path to v is found
+            IF new_dist < distances[v] THEN
+                distances[v] = new_dist
+                previous[v] = u
+                pq.push(new_dist, v)
+            END IF
+        END FOR
+    END WHILE
+    
+    RETURN distances, previous
+END FUNCTION
+```
 
 ## 🚀 HƯỚNG DẪN CÀI ĐẶT & CHẠY ỨNG DỤNG
 
