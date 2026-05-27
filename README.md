@@ -91,3 +91,75 @@ Khi menu hiển thị, bạn thực hiện theo các bước sau:
 ```
 
 ```
+## 📊 SƠ ĐỒ LỚP (CLASS DIAGRAM)
+
+```mermaid
+classDiagram
+    direction TB
+
+    class Node {
+        +int id
+        +string name
+        +float x
+        +float y
+        +__init__(id_index, name, x, y)
+        +__repr__() string
+    }
+
+    class Edge {
+        +int from_node
+        +int to_node
+        +float weight
+        +__init__(from_id, to_id, weight)
+        +__repr__() string
+    }
+
+    class Graph {
+        +list nodes
+        +list adjList
+        +__init__()
+        +addNode(node)
+        +addEdge(edge)
+        +getNeighbors(node_id) list
+    }
+
+    class MinHeap {
+        +list heap
+        +__init__()
+        +push(distance, node_idx)
+        +pop() list
+    }
+
+    class Navigator {
+        +Graph graph
+        +__init__(graph)
+        +dijkstra(start_id, end_id) tuple
+        +getPath(start_id, end_id, previous) list
+    }
+
+    class FileHandler {
+        +loadData(nodes_file, edges_file)* tuple
+        +saveData(path, distance, graph, id_list, output_file)* void
+    }
+
+    class UI {
+        +showMenu()* void
+        +display(path, distance, graph, id_list)* void
+    }
+
+    class PerformTest {
+        +measureTime(func, *args)* tuple
+        +runTest(navigator_instance, graph)* void
+    }
+
+    Graph "1" *-- "many" Node : chứa
+    Graph "1" *-- "many" Edge : chứa
+    Navigator "1" o-- "1" Graph : sử dụng bộ dữ liệu
+    Navigator ..> MinHeap : sử dụng để tối ưu Dijkstra
+    
+    FileHandler ..> Graph : khởi tạo và nạp dữ liệu
+    FileHandler ..> Node : tạo đối tượng
+    FileHandler ..> Edge : tạo đối tượng
+    
+    PerformTest ..> Navigator : đo thời gian thực thi
+```
